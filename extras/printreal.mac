@@ -1,0 +1,21 @@
+extern printf
+%macro showreal 1
+push eax
+push ecx
+push edx
+mov ecx, 0
+mov cx, 10
+shl ecx,16
+mov ch, 'f'
+mov cl, '%'
+push ecx
+mov ecx, esp
+push dword dword[%1+4]
+push dword dword[%1]
+push ecx
+call printf
+add esp, 16
+pop edx
+pop ecx
+pop eax
+%endmacro
